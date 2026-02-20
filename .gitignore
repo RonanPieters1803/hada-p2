@@ -5,3 +5,5 @@
 /.vs
 /hada-p2/.vs/hada-p2
 /hada-p2/obj/Debug
+/hada-p2/.vs
+/.gitignore
