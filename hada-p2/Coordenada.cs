@@ -64,5 +64,24 @@ namespace Hada
             Fila = coordenada.Fila;
             Columna = coordenada.Columna;
         }
+
+        public override string ToString()
+        {
+            return $"({_fila}, {_columna})";
+        }
+
+        public override int GetHashCode() {
+            return this.Fila.GetHashCode() ^ this.Columna.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            Coordenada nueva = (Coordenada)obj;
+            return this.Fila == nueva.Fila && this.Columna == nueva.Columna;
+        }
+
+        public bool Equals(Coordenada coordenada)
+        {
+            return this.Fila == coordenada.Fila && this.Columna == coordenada.Columna;        }
     }
 }
