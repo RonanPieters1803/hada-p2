@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hada
 {   
-    internal class Barco
+    public class Barco
     {
         event EventHandler<TocadoArgs> eventoTocado;
         event EventHandler<HundidoArgs> eventoHundido;
@@ -26,11 +26,11 @@ namespace Hada
                 Coordenada coor;
                 if (orientacion == 'v')
                 {
-                    coor = new Coordenada(coordenadaInicio.Fila+1, coordenadaInicio.Columna);
+                    coor = new Coordenada(coordenadaInicio.Fila, coordenadaInicio.Columna+i);
                 }
                 else
                 {
-                    coor = new Coordenada(coordenadaInicio.Fila, coordenadaInicio.Columna + i);
+                    coor = new Coordenada(coordenadaInicio.Fila+i, coordenadaInicio.Columna);
                 }
                 CoordenadasBarco[coor] = nombre;
             }
@@ -61,6 +61,16 @@ namespace Hada
                     return false;
             }
             return true;
+        }
+
+        public override string ToString()
+        {
+            string result = $"[{Nombre}] - DAÑOS: [{NumDanyos}] - HUNDIDO: {hundido()} - COORDENADAS: ";
+                foreach (KeyValuePair<Coordenada, String> par in CoordenadasBarco)
+                {
+                    result += $"[{par.Key.ToString()} :{par.Value}] ";
+                } 
+            return result;
         }
     }
 }
