@@ -1,20 +1,26 @@
 ﻿using Hada;
 using System;
 
-public class TocadoArgs : EventArgs
+namespace Hada
 {
-    public Coordenada Coordenada { get; private set; }
 
-    public TocadoArgs(Coordenada coordenada)
+    public class TocadoArgs : EventArgs
     {
-        Coordenada = coordenada;
+        public string Nombre {  get; set; }
+        public Coordenada CoordenadaImpacto { get; private set; }
+
+        public TocadoArgs(string nombre, Coordenada coordenadaImpacto)
+        {
+            Nombre = nombre;
+            CoordenadaImpacto = coordenadaImpacto;
+        }
     }
-}
-public class HundidoArgs : EventArgs
-{
-    public string Nombre { get; private set; }
-    public HundidoArgs (string nombre)
+    public class HundidoArgs : EventArgs
     {
-        Nombre = nombre;
+        public string Nombre { get; private set; }
+        public HundidoArgs(string nombre)
+        {
+            Nombre = nombre;
+        }
     }
 }
