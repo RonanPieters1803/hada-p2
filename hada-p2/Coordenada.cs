@@ -16,7 +16,7 @@ namespace Hada
 
             set
             {
-                if (_fila > 0 && _fila < 9)
+                if (value >= 0 && value <= 9)
                 {
                     _fila = value;
                 }
@@ -32,7 +32,7 @@ namespace Hada
 
             set
             {
-                if (_columna > 0 && _columna < 9)
+                if (value >= 0 && value <= 9)
                 {
                     _columna = value;
                 }
@@ -41,6 +41,28 @@ namespace Hada
                     throw new ArgumentOutOfRangeException("Columna entre 0 y 9");
                 }
             }
+        }
+        public Coordenada() {
+            _fila = 0;
+            _columna = 0;
+        }
+
+        public Coordenada(int fila, int columna)
+        {
+            Fila = fila;
+            Columna = columna;
+        }
+
+        public Coordenada(string fila, string columna)
+        {
+            Fila = int.Parse(fila);
+            Columna = int.Parse(columna);
+        }
+
+        public Coordenada(Coordenada coordenada) 
+        { 
+            Fila = coordenada.Fila;
+            Columna = coordenada.Columna;
         }
     }
 }
