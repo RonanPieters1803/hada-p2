@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hada
 {
-    internal class Coordenada
+    public class Coordenada
     {
         private int _fila, _columna;
 
@@ -64,7 +64,7 @@ namespace Hada
             Fila = coordenada.Fila;
             Columna = coordenada.Columna;
         }
-
+            
         public override string ToString()
         {
             return $"({_fila}, {_columna})";

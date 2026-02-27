@@ -6,20 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hada
-{
-    internal class CoordenadaEventArgs : EventArgs
-    {
-        public Coordenada Coordenada { get; private set; }
-
-        public CoordenadaEventArgs(Coordenada coordenada)
-        {
-            Coordenada = coordenada;
-        }
-    }
+{   
     internal class Barco
     {
-        public event EventHandler<CoordenadaEventArgs> Tocado;
-        public event EventHandler Hundido; 
+        event EventHandler<TocadoArgs> eventoTocado;
+        event EventHandler<HundidoArgs> eventoHundido;
 
         public Dictionary<Coordenada, String> CoordenadasBarco {  get; private set; }
         public string Nombre { get; private set; }
@@ -36,7 +27,6 @@ namespace Hada
                 if (orientacion == 'v')
                 {
                     coor = new Coordenada(coordenadaInicio.Fila+1, coordenadaInicio.Columna);
-                    
                 }
                 else
                 {
@@ -53,11 +43,11 @@ namespace Hada
                 if (!CoordenadasBarco[c].EndsWith("_T"))
                 {
                     CoordenadasBarco[c] += "_T";
-                    Tocado?.Invoke(this, new CoordenadaEventArgs(c));
+                    eventoTocado?.Invoke(this, new TocadoArgs(c));
                     NumDanyos++;
                     if (hundido())
                     {
-                        Hundido?.Invoke(this, EventArgs.Empty);
+                        eventoHundido?.Invoke(this, new HundidoArgs(Nombre));
                     }
                 }
             }
