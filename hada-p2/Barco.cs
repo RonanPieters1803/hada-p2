@@ -9,8 +9,8 @@ namespace Hada
 {   
     public class Barco
     {
-        event EventHandler<TocadoArgs> eventoTocado;
-        event EventHandler<HundidoArgs> eventoHundido;
+        public event EventHandler<TocadoArgs> eventoTocado;
+        public event EventHandler<HundidoArgs> eventoHundido;
 
         public Dictionary<Coordenada, String> CoordenadasBarco {  get; private set; }
         public string Nombre { get; private set; }
@@ -43,7 +43,7 @@ namespace Hada
                 if (!CoordenadasBarco[c].EndsWith("_T"))
                 {
                     CoordenadasBarco[c] += "_T";
-                    eventoTocado?.Invoke(this, new TocadoArgs(c));
+                    eventoTocado?.Invoke(this, new TocadoArgs(Nombre, c));
                     NumDanyos++;
                     if (hundido())
                     {
